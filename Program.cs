@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Tabuleiro;
+using System;
 
 namespace Xadrez
 {
