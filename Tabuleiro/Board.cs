@@ -21,5 +21,11 @@ namespace Tabuleiro
         {
             return Pieces[linha, coluna];
         }
+
+        public void putPiece(Piece p, Position pos)
+        {
+            Pieces[pos.Linha, pos.Coluna] = p;
+            p.Position = pos;
+        }
     }
 }
