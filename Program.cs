@@ -7,7 +7,9 @@ namespace Xadrez
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Board tab = new Board(8, 8);
+
+            Console.ReadLine();
         }
     }
 }
