@@ -8,12 +8,18 @@ namespace Tabuleiro
     {
         public int Linhas { get; set; }
         public int Colunas { get; set; }
-        public Piece[,] Piece;
+        private Piece[,] Pieces;
         
         public Board(int linhas, int colunas)
         {
             Linhas = linhas;
             Colunas = colunas;
+            Pieces = new Piece[linhas, colunas];
+        }
+
+        public Piece piece( int linha, int coluna)
+        {
+            return Pieces[linha, coluna];
         }
     }
 }
