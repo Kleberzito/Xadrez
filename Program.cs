@@ -8,10 +8,19 @@ namespace Xadrez
     {
         static void Main(string[] args)
         {
-            PositionChess p = new PositionChess(7, 'c');
+            try
+            {
+                Board Boa = new Board(8, 8);
+                Boa.putPiece(new Tower(Boa, Color.Preto), new Position(0, 0));
+                Boa.putPiece(new Tower(Boa, Color.Preto), new Position(1, 3));
+                Boa.putPiece(new King(Boa, Color.Branca), new Position(7, 5));
 
-            Console.WriteLine(p.toPosition());
-            Console.WriteLine( p);
+                Screen.printScreen(Boa);
+            }
+            catch (BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Console.ReadLine();
         }
