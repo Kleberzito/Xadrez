@@ -8,12 +8,19 @@ namespace Xadrez
     {
         static void Main(string[] args)
         {
-            Board Boa = new Board(8, 8);
-            Boa.putPiece(new Tower(Boa, Color.Preto) , new Position(0, 0));
-            Boa.putPiece(new Tower(Boa, Color.Preto) , new Position(1, 3));
-            Boa.putPiece(new King(Boa, Color.Preto) , new Position(2, 4));
+            try
+            {
+                Board Boa = new Board(8, 8);
+                Boa.putPiece(new Tower(Boa, Color.Preto), new Position(0, 0));
+                Boa.putPiece(new Tower(Boa, Color.Preto), new Position(1, 3));
+                Boa.putPiece(new King(Boa, Color.Preto), new Position(7, 5));
 
-            Screen.printScreen(Boa);
+                Screen.printScreen(Boa);
+            }
+            catch(BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Console.ReadLine();
         }
