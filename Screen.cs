@@ -15,20 +15,39 @@ namespace Xadrez
                 Console.Write(8 - l + " ");
                 for(int c = 0; c < boa.Colunas; c++)
                 {
-                    if(boa.piece(l, c) == null)
-                    {
-                        Console.Write("- ");
-                    }
-                    else
-                    {
-                        printPiece(boa.piece(l, c));
-                        Console.Write(" ");
-                    }
-                    
+                    printPiece(boa.piece(l, c));
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
+
+        }
+
+        public static void printScreen(Board boa, bool[,] move)
+        {
+            ConsoleColor bOriginal = Console.BackgroundColor;
+            ConsoleColor bNew = ConsoleColor.DarkGray;
+
+            for (int l = 0; l < boa.Linhas; l++)
+            {
+                Console.Write(8 - l + " ");
+                for (int c = 0; c < boa.Colunas; c++)
+                {
+                    if (move[l, c])
+                    {
+                        Console.BackgroundColor = bNew;
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = bOriginal;
+                    }
+                    printPiece(boa.piece(l, c));
+                    Console.BackgroundColor = bOriginal;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H");
+            Console.BackgroundColor = bOriginal;
 
         }
 
@@ -42,17 +61,25 @@ namespace Xadrez
 
         public static void printPiece(Piece piece)
         {
-            if(piece.Color == Color.Branca)
+            if (piece == null)
             {
-                Console.Write(piece);
+                Console.Write("- ");
             }
             else
             {
-                ConsoleColor aux = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(piece);
-                Console.ForegroundColor = aux;
-            }
+                if (piece.Color == Color.Branca)
+                {
+                    Console.Write(piece);
+                }
+                else
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(piece);
+                    Console.ForegroundColor = aux;
+                }
+                Console.Write(" ");
+            }            
         }
 
     }

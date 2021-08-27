@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tabuleiro
 {
-    class Piece
+    abstract class Piece
     {
         public Position Position { get; set; }
         public Color Color { get; protected set; }
@@ -18,6 +18,8 @@ namespace Tabuleiro
             Board = board;
             nMoving = 0;
         }
+
+        public abstract bool[,] nMovimentPiece(); 
 
         public void PieceMoviment()
         {

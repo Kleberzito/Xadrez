@@ -20,7 +20,13 @@ namespace Xadrez
                     Console.WriteLine();
                     Console.Write("Origem: ");
                     Position origin = Screen.readPosition().toPosition();
-                    Console.Write("Destino");
+
+                    bool[,] move = match.boa.piece(origin).nMovimentPiece();
+                    Console.Clear();
+                    Screen.printScreen(match.boa, move);
+
+                    Console.WriteLine();
+                    Console.Write("Destino: ");
                     Position destiny = Screen.readPosition().toPosition();
 
                     match.ExecuteMoviment(origin, destiny);

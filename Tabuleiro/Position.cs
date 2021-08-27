@@ -15,6 +15,12 @@ namespace Tabuleiro
             Coluna = coluna;
         }
 
+        public void definePosition(int linha, int coluna)
+        {
+            Linha = linha;
+            Coluna = coluna;
+        }
+
         public override string ToString()
         {
             return Linha + ", " + Coluna;
