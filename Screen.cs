@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Tabuleiro;
+using Chess;
 
 namespace Xadrez
 {
@@ -31,11 +32,19 @@ namespace Xadrez
 
         }
 
+        public static PositionChess readPosition()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            return new PositionChess(linha, coluna);
+        }
+
         public static void printPiece(Piece piece)
         {
             if(piece.Color == Color.Branca)
             {
-                Console.WriteLine(piece);
+                Console.Write(piece);
             }
             else
             {

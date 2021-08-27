@@ -18,5 +18,10 @@ namespace Tabuleiro
             Board = board;
             nMoving = 0;
         }
+
+        public void PieceMoviment()
+        {
+            nMoving++;
+        }
     }
 }

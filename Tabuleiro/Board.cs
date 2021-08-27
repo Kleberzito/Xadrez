@@ -37,6 +37,18 @@ namespace Tabuleiro
             p.Position = pos;
         }
 
+        public Piece removePiece(Position pos)
+        {
+            if(piece(pos) == null)
+            {
+                return null;
+            }
+            Piece aux = piece(pos);
+            aux.Position = null;
+            Pieces[pos.Linha, pos.Coluna] = null;
+            return aux;
+        }
+
         public bool existsPiece(Position pos)
         {
             validatePosition(pos);

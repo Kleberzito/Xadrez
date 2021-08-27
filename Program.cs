@@ -10,12 +10,23 @@ namespace Xadrez
         {
             try
             {
-                Board Boa = new Board(8, 8);
-                Boa.putPiece(new Tower(Boa, Color.Preto), new Position(0, 0));
-                Boa.putPiece(new Tower(Boa, Color.Preto), new Position(1, 3));
-                Boa.putPiece(new King(Boa, Color.Branca), new Position(7, 5));
+                ChessMatch match = new ChessMatch();
 
-                Screen.printScreen(Boa);
+                while (!match.matchFinished)
+                {
+                    Console.Clear();
+                    Screen.printScreen(match.boa);
+
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Position origin = Screen.readPosition().toPosition();
+                    Console.Write("Destino");
+                    Position destiny = Screen.readPosition().toPosition();
+
+                    match.ExecuteMoviment(origin, destiny);
+                }
+
+                Screen.printScreen(match.boa);
             }
             catch (BoardException e)
             {
