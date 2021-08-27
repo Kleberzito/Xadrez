@@ -33,6 +33,7 @@ namespace Xadrez
                         Console.WriteLine();
                         Console.Write("Destino: ");
                         Position destiny = Screen.readPosition().toPosition();
+                        match.TestPosDestiny(origin, destiny);
 
                         match.TurnPlaying(origin, destiny);
                     }

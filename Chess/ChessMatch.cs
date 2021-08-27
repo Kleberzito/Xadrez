@@ -60,6 +60,14 @@ namespace Chess
             }
         }
 
+        public void TestPosDestiny(Position origin, Position destiny)
+        {
+            if (!boa.piece(origin).MoveTo(destiny))
+            {
+                throw new BoardException("Posição de destino inválida");
+            }
+        }
+
         public void putPiece()
         {
             boa.putPiece(new Tower(boa, Color.Branca), new PositionChess(1, 'c').toPosition());

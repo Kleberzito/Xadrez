@@ -36,6 +36,11 @@ namespace Tabuleiro
             return false;
         }
 
+        public bool MoveTo(Position pos)
+        {
+            return nMovimentPiece()[pos.Linha, pos.Coluna];
+        }
+
         public abstract bool[,] nMovimentPiece(); 
 
         public void PieceMoviment()
