@@ -19,6 +19,23 @@ namespace Tabuleiro
             nMoving = 0;
         }
 
+        public bool existsMovement()
+        {
+            bool[,] mat = nMovimentPiece();
+            for(int l = 0; l < Board.Linhas; l++)
+            {
+                for (int c = 0; c < Board.Colunas; c++)
+                {
+                    if(mat[l, c])
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public abstract bool[,] nMovimentPiece(); 
 
         public void PieceMoviment()

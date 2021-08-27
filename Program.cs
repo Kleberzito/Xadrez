@@ -14,22 +14,33 @@ namespace Xadrez
 
                 while (!match.matchFinished)
                 {
-                    Console.Clear();
-                    Screen.printScreen(match.boa);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.printScreen(match.boa);
+                        Console.WriteLine("Turno: " + match.turn);
+                        Console.WriteLine("Aguadando jogada do jogador: " + match.currentPlayer);
 
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Position origin = Screen.readPosition().toPosition();
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Position origin = Screen.readPosition().toPosition();
+                        match.TestPosOrigin(origin);
 
-                    bool[,] move = match.boa.piece(origin).nMovimentPiece();
-                    Console.Clear();
-                    Screen.printScreen(match.boa, move);
+                        bool[,] move = match.boa.piece(origin).nMovimentPiece();
+                        Console.Clear();
+                        Screen.printScreen(match.boa, move);
 
-                    Console.WriteLine();
-                    Console.Write("Destino: ");
-                    Position destiny = Screen.readPosition().toPosition();
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Position destiny = Screen.readPosition().toPosition();
 
-                    match.ExecuteMoviment(origin, destiny);
+                        match.TurnPlaying(origin, destiny);
+                    }
+                    catch (BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
 
                 Screen.printScreen(match.boa);
