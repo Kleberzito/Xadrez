@@ -7,7 +7,38 @@ using Chess;
 namespace Xadrez
 {
     class Screen
-    {
+    { 
+        public static void printMatch(ChessMatch match)
+        {
+            printScreen(match.boa);
+            Console.WriteLine();
+            printPiecesCatch(match);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + match.turn);
+            Console.WriteLine("Aguadando jogada do jogador: " + match.currentPlayer);
+        }
+
+        public static void printPiecesCatch(ChessMatch match)
+        {
+            Console.WriteLine("Peças capturadas:");
+            Console.Write("Brancas: ");
+            printSet(match.piecesCaught(Color.Branca));
+            Console.WriteLine();
+            Console.Write("Pretas: ");
+            printSet(match.piecesCaught(Color.Preto));
+            Console.WriteLine();
+        }
+
+        public static void printSet(HashSet<Piece> pieceSet)
+        {
+            Console.Write("[");
+            foreach (Piece p in pieceSet)
+            {                
+                Console.WriteLine(p + " ");
+            }
+            Console.Write("]");            
+        }
+
         public static void printScreen(Board boa)
         {
             for(int l = 0; l < boa.Linhas; l++)

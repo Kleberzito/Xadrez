@@ -11,13 +11,48 @@ namespace Chess
         public int turn { get; private set; }
         public Color currentPlayer { get; private set; }
         public bool matchFinished { get; private set; }
+        private HashSet<Piece> pieces;
+        private HashSet<Piece> catchPiece;
 
         public ChessMatch()
         {
             boa = new Board(8, 8);
             turn = 1;
             currentPlayer = Color.Branca;
+            matchFinished = false;
+            pieces = new HashSet<Piece>();
+            catchPiece = new HashSet<Piece>();
             putPiece();
+        }
+
+        public HashSet<Piece> piecesCaught(Color cor)
+        {
+            HashSet<Piece> aux = new HashSet<Piece>();
+            foreach(Piece p in catchPiece)
+            {
+                if(p.Color == cor)
+                {
+                    aux.Add(p);
+                }
+            }
+
+            return aux;
+        }
+
+        public HashSet<Piece> piecesInGame(Color cor)
+        {
+            HashSet<Piece> aux = new HashSet<Piece>();
+            foreach (Piece p in pieces)
+            {
+                if (p.Color == cor)
+                {
+                    aux.Add(p);
+                }
+            }
+
+            aux.ExceptWith(piecesCaught(cor));
+
+            return aux;
         }
 
         public void ExecuteMoviment(Position origin, Position destiny)
@@ -26,6 +61,11 @@ namespace Chess
             p.PieceMoviment();
             Piece capturedPiece = boa.removePiece(destiny);
             boa.putPiece(p, destiny);
+
+            if(capturedPiece != null)
+            {
+                catchPiece.Add(capturedPiece);
+            }
         }
 
         public void TurnPlaying(Position origin, Position destiny)
@@ -68,22 +108,27 @@ namespace Chess
             }
         }
 
+        public void putNewPiece(int line, char column, Piece piece)
+        {
+            boa.putPiece(piece, new PositionChess(line, column).toPosition());
+            pieces.Add(piece);
+        }
+
         public void putPiece()
         {
-            boa.putPiece(new Tower(boa, Color.Branca), new PositionChess(1, 'c').toPosition());
-            boa.putPiece(new Tower(boa, Color.Branca), new PositionChess(2, 'c').toPosition());
-            boa.putPiece(new Tower(boa, Color.Branca), new PositionChess(2, 'd').toPosition());
-            boa.putPiece(new Tower(boa, Color.Branca), new PositionChess(2, 'e').toPosition());
-            boa.putPiece(new Tower(boa, Color.Branca), new PositionChess(1, 'e').toPosition());
-            boa.putPiece(new King(boa, Color.Branca), new PositionChess(1, 'd').toPosition());
+            putNewPiece(1, 'c', new Tower(boa, Color.Branca));
+            putNewPiece(2, 'c', new Tower(boa, Color.Branca));
+            putNewPiece(2, 'd', new Tower(boa, Color.Branca));
+            putNewPiece(2, 'e', new Tower(boa, Color.Branca));
+            putNewPiece(1, 'e', new Tower(boa, Color.Branca));
+            putNewPiece(1, 'd', new King(boa, Color.Branca));
 
-            boa.putPiece(new Tower(boa, Color.Preto), new PositionChess(7, 'c').toPosition());
-            boa.putPiece(new Tower(boa, Color.Preto), new PositionChess(8, 'c').toPosition());
-            boa.putPiece(new Tower(boa, Color.Preto), new PositionChess(7, 'd').toPosition());
-            boa.putPiece(new Tower(boa, Color.Preto), new PositionChess(7, 'e').toPosition());
-            boa.putPiece(new Tower(boa, Color.Preto), new PositionChess(8, 'e').toPosition());
-            boa.putPiece(new King(boa, Color.Preto), new PositionChess(8, 'd').toPosition());
-
+            putNewPiece(7, 'c', new Tower(boa, Color.Preto));
+            putNewPiece(8, 'c', new Tower(boa, Color.Preto));
+            putNewPiece(7, 'd', new Tower(boa, Color.Preto));
+            putNewPiece(7, 'e', new Tower(boa, Color.Preto));
+            putNewPiece(8, 'e', new Tower(boa, Color.Preto));
+            putNewPiece(8, 'd', new King(boa, Color.Preto));
         }
     }
 }

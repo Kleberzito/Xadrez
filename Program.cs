@@ -17,12 +17,10 @@ namespace Xadrez
                     try
                     {
                         Console.Clear();
-                        Screen.printScreen(match.boa);
-                        Console.WriteLine("Turno: " + match.turn);
-                        Console.WriteLine("Aguadando jogada do jogador: " + match.currentPlayer);
+                        Screen.printMatch(match);
 
                         Console.WriteLine();
-                        Console.Write("Origem: ");
+                        Console.Write("Origem (Letra + Número): ");
                         Position origin = Screen.readPosition().toPosition();
                         match.TestPosOrigin(origin);
 
@@ -31,7 +29,7 @@ namespace Xadrez
                         Screen.printScreen(match.boa, move);
 
                         Console.WriteLine();
-                        Console.Write("Destino: ");
+                        Console.Write("Destino(Letra + Número): ");
                         Position destiny = Screen.readPosition().toPosition();
                         match.TestPosDestiny(origin, destiny);
 
