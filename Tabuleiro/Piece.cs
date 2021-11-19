@@ -47,5 +47,9 @@ namespace Tabuleiro
         {
             nMoving++;
         }
+        public void PieceMovimentUndo()
+        {
+            nMoving--;
+        }
     }
 }

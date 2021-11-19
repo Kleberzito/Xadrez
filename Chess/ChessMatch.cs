@@ -13,6 +13,7 @@ namespace Chess
         public bool matchFinished { get; private set; }
         private HashSet<Piece> pieces;
         private HashSet<Piece> catchPiece;
+        public bool sheikh { get; private set; }
 
         public ChessMatch()
         {
@@ -20,6 +21,7 @@ namespace Chess
             turn = 1;
             currentPlayer = Color.Branca;
             matchFinished = false;
+            sheikh = false;
             pieces = new HashSet<Piece>();
             catchPiece = new HashSet<Piece>();
             putPiece();
@@ -55,7 +57,48 @@ namespace Chess
             return aux;
         }
 
-        public void ExecuteMoviment(Position origin, Position destiny)
+        private Color adversary(Color cor)
+        {
+            if(cor == Color.Branca)
+            {
+                return Color.Preto;
+            }
+            else
+            {
+                return Color.Branca;
+            }
+        }
+
+        private Piece king(Color cor)
+        {
+            foreach(Piece p in piecesInGame(cor))
+            {
+                if( p is King) { return p;}
+            }
+            return null;
+        }
+
+        public bool inSheikh(Color cor)
+        {
+            Piece k = king(cor);
+            if(k == null)
+            {
+                throw new BoardException("Não tem a peça Rei " + cor + "no tabuleiro");
+            }
+
+            foreach(Piece p in piecesInGame(adversary(cor)))
+            {
+                bool[,] mat = p.nMovimentPiece();
+                if (mat[k.Position.Linha, k.Position.Coluna])
+                {
+                    return true;
+                }                
+            }
+
+            return false;
+        }
+
+        public Piece ExecuteMoviment(Position origin, Position destiny)
         {
             Piece p = boa.removePiece(origin);
             p.PieceMoviment();
@@ -66,13 +109,50 @@ namespace Chess
             {
                 catchPiece.Add(capturedPiece);
             }
+
+            return capturedPiece;
+        }
+
+        public void undoMoviment(Position origin, Position destiny, Piece capturedPiece)
+        {
+            Piece p = boa.removePiece(destiny);
+            p.PieceMovimentUndo();
+            
+            if(capturedPiece != null)
+            {
+                boa.putPiece(capturedPiece, destiny);
+                catchPiece.Remove(capturedPiece);
+            }
+
+            boa.putPiece(p, origin);
         }
 
         public void TurnPlaying(Position origin, Position destiny)
         {
-            ExecuteMoviment(origin, destiny);
+            Piece capturedPiece = ExecuteMoviment(origin, destiny);
+
+            if (inSheikh(currentPlayer))
+            {
+                undoMoviment(origin, destiny, capturedPiece);
+                throw new BoardException("Rei em Xeque");
+            }
+
+            if (inSheikh(adversary(currentPlayer)))
+            {
+                sheikh = true;
+            }
+            else
+            {
+                sheikh = false;
+            }
+
             turn++;
-            if(currentPlayer == Color.Branca)
+            changePlayer();
+        }
+
+        private void changePlayer()
+        {
+            if (currentPlayer == Color.Branca)
             {
                 currentPlayer = Color.Preto;
             }
