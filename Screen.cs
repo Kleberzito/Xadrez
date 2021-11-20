@@ -15,10 +15,18 @@ namespace Xadrez
             printPiecesCatch(match);
             Console.WriteLine();
             Console.WriteLine("Turno: " + match.turn);
-            Console.WriteLine("Aguadando jogada do jogador: " + match.currentPlayer);
-            if (match.sheikh)
+            if (!match.matchFinished)
             {
-                Console.WriteLine("EM XEQUE!");
+                Console.WriteLine("Aguadando jogada do jogador: " + match.currentPlayer);
+                if (match.check)
+                {
+                    Console.WriteLine("EM XEQUE!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUEMATE!!!");
+                Console.WriteLine("Vitoria do jogardo: " + match.currentPlayer);
             }
         }
 

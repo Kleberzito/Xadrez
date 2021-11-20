@@ -42,7 +42,8 @@ namespace Xadrez
                     }
                 }
 
-                Screen.printScreen(match.boa);
+                Console.Clear();
+                Screen.printMatch(match);
             }
             catch (BoardException e)
             {

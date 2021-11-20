@@ -13,7 +13,7 @@ namespace Chess
         public bool matchFinished { get; private set; }
         private HashSet<Piece> pieces;
         private HashSet<Piece> catchPiece;
-        public bool sheikh { get; private set; }
+        public bool check { get; private set; }
 
         public ChessMatch()
         {
@@ -21,7 +21,7 @@ namespace Chess
             turn = 1;
             currentPlayer = Color.Branca;
             matchFinished = false;
-            sheikh = false;
+            check = false;
             pieces = new HashSet<Piece>();
             catchPiece = new HashSet<Piece>();
             putPiece();
@@ -78,7 +78,7 @@ namespace Chess
             return null;
         }
 
-        public bool inSheikh(Color cor)
+        public bool inCheck(Color cor)
         {
             Piece k = king(cor);
             if(k == null)
@@ -96,6 +96,39 @@ namespace Chess
             }
 
             return false;
+        }
+
+        public bool testCheckmate(Color cor)
+        {
+            if (!inCheck(cor))
+            {
+                return false;
+            }
+
+            foreach(Piece p in piecesInGame(cor))
+            {
+                bool[,] mat = p.nMovimentPiece();
+                for(int l = 0; l < boa.Linhas; l++)
+                {
+                    for (int c = 0; c < boa.Colunas; c++)
+                    {
+                        if(mat[l, c])
+                        {
+                            Position origin = p.Position;
+                            Position desteny = new Position(l, c);
+                            Piece capturedPiece = ExecuteMoviment(origin, desteny);
+                            bool testCheck = inCheck(cor);
+                            undoMoviment(origin, desteny, capturedPiece);
+                            if (!testCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
         }
 
         public Piece ExecuteMoviment(Position origin, Position destiny)
@@ -131,23 +164,30 @@ namespace Chess
         {
             Piece capturedPiece = ExecuteMoviment(origin, destiny);
 
-            if (inSheikh(currentPlayer))
+            if (inCheck(currentPlayer))
             {
                 undoMoviment(origin, destiny, capturedPiece);
                 throw new BoardException("Rei em Xeque");
             }
 
-            if (inSheikh(adversary(currentPlayer)))
+            if (inCheck(adversary(currentPlayer)))
             {
-                sheikh = true;
+                check = true;
             }
             else
             {
-                sheikh = false;
+                check = false;
             }
 
-            turn++;
-            changePlayer();
+            if (testCheckmate(adversary(currentPlayer)))
+            {
+                matchFinished = true;
+            }
+            else
+            {
+                turn++;
+                changePlayer();
+            }            
         }
 
         private void changePlayer()
@@ -197,18 +237,26 @@ namespace Chess
         public void putPiece()
         {
             putNewPiece(1, 'c', new Tower(boa, Color.Branca));
-            putNewPiece(2, 'c', new Tower(boa, Color.Branca));
-            putNewPiece(2, 'd', new Tower(boa, Color.Branca));
-            putNewPiece(2, 'e', new Tower(boa, Color.Branca));
-            putNewPiece(1, 'e', new Tower(boa, Color.Branca));
             putNewPiece(1, 'd', new King(boa, Color.Branca));
+            putNewPiece(7, 'h', new Tower(boa, Color.Branca));
 
-            putNewPiece(7, 'c', new Tower(boa, Color.Preto));
-            putNewPiece(8, 'c', new Tower(boa, Color.Preto));
-            putNewPiece(7, 'd', new Tower(boa, Color.Preto));
-            putNewPiece(7, 'e', new Tower(boa, Color.Preto));
-            putNewPiece(8, 'e', new Tower(boa, Color.Preto));
-            putNewPiece(8, 'd', new King(boa, Color.Preto));
+            putNewPiece(8, 'a', new King(boa, Color.Preto));
+            putNewPiece(8, 'b', new Tower(boa, Color.Preto));
+
+
+            //putNewPiece(1, 'c', new Tower(boa, Color.Branca));
+            //putNewPiece(2, 'c', new Tower(boa, Color.Branca));
+            //putNewPiece(2, 'd', new Tower(boa, Color.Branca));
+            //putNewPiece(2, 'e', new Tower(boa, Color.Branca));
+            //putNewPiece(1, 'e', new Tower(boa, Color.Branca));
+            //putNewPiece(1, 'd', new King(boa, Color.Branca));
+
+            //putNewPiece(7, 'c', new Tower(boa, Color.Preto));
+            //putNewPiece(8, 'c', new Tower(boa, Color.Preto));
+            //putNewPiece(7, 'd', new Tower(boa, Color.Preto));
+            //putNewPiece(7, 'e', new Tower(boa, Color.Preto));
+            //putNewPiece(8, 'e', new Tower(boa, Color.Preto));
+            //putNewPiece(8, 'd', new King(boa, Color.Preto)); 
         }
     }
 }
