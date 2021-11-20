@@ -236,27 +236,43 @@ namespace Chess
 
         public void putPiece()
         {
-            putNewPiece(1, 'c', new Tower(boa, Color.Branca));
-            putNewPiece(1, 'd', new King(boa, Color.Branca));
-            putNewPiece(7, 'h', new Tower(boa, Color.Branca));
+            putNewPiece(1, 'a', new Tower(boa, Color.Branca));
+            putNewPiece(1, 'b', new Knight(boa, Color.Branca));
+            putNewPiece(1, 'c', new Bishop(boa, Color.Branca));
+            putNewPiece(1, 'd', new Queen(boa, Color.Branca));
+            putNewPiece(1, 'e', new King(boa, Color.Branca));
+            putNewPiece(1, 'f', new Bishop(boa, Color.Branca));
+            putNewPiece(1, 'g', new Knight(boa, Color.Branca));
+            putNewPiece(1, 'h', new Tower(boa, Color.Branca));
+            putNewPiece(2, 'a', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'b', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'c', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'd', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'e', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'f', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'g', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'h', new Pawn(boa, Color.Branca));
 
-            putNewPiece(8, 'a', new King(boa, Color.Preto));
-            putNewPiece(8, 'b', new Tower(boa, Color.Preto));
+            putNewPiece(8, 'a', new Tower(boa, Color.Preto));
+            putNewPiece(8, 'b', new Knight(boa, Color.Preto));
+            putNewPiece(8, 'c', new Bishop(boa, Color.Preto));
+            putNewPiece(8, 'd', new Queen(boa, Color.Preto));
+            putNewPiece(8, 'e', new King(boa, Color.Preto));
+            putNewPiece(8, 'f', new Bishop(boa, Color.Preto));
+            putNewPiece(8, 'g', new Knight(boa, Color.Preto));
+            putNewPiece(8, 'h', new Tower(boa, Color.Preto));
+            putNewPiece(7, 'a', new Pawn(boa, Color.Preto));
+            putNewPiece(7, 'b', new Pawn(boa, Color.Preto));
+            putNewPiece(7, 'c', new Pawn(boa, Color.Preto));
+            putNewPiece(7, 'd', new Pawn(boa, Color.Preto));
+            putNewPiece(7, 'e', new Pawn(boa, Color.Preto));
+            putNewPiece(7, 'f', new Pawn(boa, Color.Preto));
+            putNewPiece(7, 'g', new Pawn(boa, Color.Preto));
+            putNewPiece(7, 'h', new Pawn(boa, Color.Preto));
+            
 
 
-            //putNewPiece(1, 'c', new Tower(boa, Color.Branca));
-            //putNewPiece(2, 'c', new Tower(boa, Color.Branca));
-            //putNewPiece(2, 'd', new Tower(boa, Color.Branca));
-            //putNewPiece(2, 'e', new Tower(boa, Color.Branca));
-            //putNewPiece(1, 'e', new Tower(boa, Color.Branca));
-            //putNewPiece(1, 'd', new King(boa, Color.Branca));
-
-            //putNewPiece(7, 'c', new Tower(boa, Color.Preto));
-            //putNewPiece(8, 'c', new Tower(boa, Color.Preto));
-            //putNewPiece(7, 'd', new Tower(boa, Color.Preto));
-            //putNewPiece(7, 'e', new Tower(boa, Color.Preto));
-            //putNewPiece(8, 'e', new Tower(boa, Color.Preto));
-            //putNewPiece(8, 'd', new King(boa, Color.Preto)); 
+            
         }
     }
 }
