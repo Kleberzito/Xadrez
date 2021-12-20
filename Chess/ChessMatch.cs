@@ -244,14 +244,14 @@ namespace Chess
             putNewPiece(1, 'f', new Bishop(boa, Color.Branca));
             putNewPiece(1, 'g', new Knight(boa, Color.Branca));
             putNewPiece(1, 'h', new Tower(boa, Color.Branca));
-            putNewPiece(2, 'a', new Pawn(boa, Color.Branca));
+            /*putNewPiece(2, 'a', new Pawn(boa, Color.Branca));
             putNewPiece(2, 'b', new Pawn(boa, Color.Branca));
             putNewPiece(2, 'c', new Pawn(boa, Color.Branca));
             putNewPiece(2, 'd', new Pawn(boa, Color.Branca));
             putNewPiece(2, 'e', new Pawn(boa, Color.Branca));
-            putNewPiece(2, 'f', new Pawn(boa, Color.Branca));
-            putNewPiece(2, 'g', new Pawn(boa, Color.Branca));
-            putNewPiece(2, 'h', new Pawn(boa, Color.Branca));
+            putNewPiece(2, 'f', new Queen(boa, Color.Branca));
+            putNewPiece(2, 'g', new Bishop(boa, Color.Branca));
+            putNewPiece(2, 'h', new Knight(boa, Color.Branca));*/
 
             putNewPiece(8, 'a', new Tower(boa, Color.Preto));
             putNewPiece(8, 'b', new Knight(boa, Color.Preto));
