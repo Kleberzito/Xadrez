@@ -253,7 +253,7 @@ namespace Chess
             putNewPiece(2, 'g', new Pawn(boa, Color.Branca));
             putNewPiece(2, 'h', new Pawn(boa, Color.Branca));
 
-            putNewPiece(8, 'a', new Tower(boa, Color.Preto));
+            putNewPiece(8, 'a', new Tower(boa, Color.Preto));            
             putNewPiece(8, 'b', new Knight(boa, Color.Preto));
             putNewPiece(8, 'c', new Bishop(boa, Color.Preto));
             putNewPiece(8, 'd', new Queen(boa, Color.Preto));
@@ -269,10 +269,10 @@ namespace Chess
             putNewPiece(7, 'f', new Pawn(boa, Color.Preto));
             putNewPiece(7, 'g', new Pawn(boa, Color.Preto));
             putNewPiece(7, 'h', new Pawn(boa, Color.Preto));
-            
 
 
-            
+
+
         }
     }
 }

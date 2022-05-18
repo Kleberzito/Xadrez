@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Tabuleiro;
+﻿using Tabuleiro;
 
 namespace Chess
 {
@@ -37,7 +34,7 @@ namespace Chess
                 {
                     break;
                 }
-                pos.definePosition(Position.Linha - 1, Position.Coluna - 1);
+                pos.definePosition(pos.Linha - 1, pos.Coluna - 1);
             }
 
             pos.definePosition(Position.Linha - 1, Position.Coluna + 1);
@@ -48,7 +45,7 @@ namespace Chess
                 {
                     break;
                 }
-                pos.definePosition(Position.Linha - 1, Position.Coluna + 1);
+                pos.definePosition(pos.Linha - 1, pos.Coluna + 1);
             }
 
             pos.definePosition(Position.Linha + 1, Position.Coluna + 1);
@@ -59,7 +56,7 @@ namespace Chess
                 {
                     break;
                 }
-                pos.definePosition(Position.Linha + 1, Position.Coluna + 1);
+                pos.definePosition(pos.Linha + 1, pos.Coluna + 1);
             }
 
             pos.definePosition(Position.Linha + 1, Position.Coluna - 1);
@@ -70,7 +67,7 @@ namespace Chess
                 {
                     break;
                 }
-                pos.definePosition(Position.Linha + 1, Position.Coluna - 1);
+                pos.definePosition(pos.Linha + 1, pos.Coluna - 1);
             }
 
 
