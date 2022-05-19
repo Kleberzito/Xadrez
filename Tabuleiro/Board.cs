@@ -68,7 +68,7 @@ namespace Tabuleiro
         {
             if (!validPosition(pos))
             {
-                throw new BoardException("Posição inveliada");
+                throw new BoardException("Posição invalida.");
             }
         }
     }

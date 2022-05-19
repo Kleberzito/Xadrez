@@ -38,6 +38,7 @@ namespace Xadrez
                     catch (BoardException e)
                     {
                         Console.WriteLine(e.Message);
+                        Console.WriteLine("Pressione Enter.");
                         Console.ReadLine();
                     }
                 }
