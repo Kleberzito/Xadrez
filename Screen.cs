@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Tabuleiro;
 using Chess;
 
@@ -99,7 +98,21 @@ namespace Xadrez
             string s = Console.ReadLine();
             char coluna = s[0];
             int linha = int.Parse(s[1] + "");
-            return new PositionChess(linha, coluna);
+            if(linha < 8)
+            {
+                if(coluna < 8)
+                {
+                    return new PositionChess(linha, coluna);
+                }
+                else
+                {
+                    throw new BoardException("Posição fora do tabuleiro.");
+                }
+            }
+            else
+            {
+                throw new BoardException("Posição fora do tabuleiro.");
+            }
         }
 
         public static void printPiece(Piece piece)

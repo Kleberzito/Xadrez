@@ -205,19 +205,19 @@ namespace Chess
         public void TestPosOrigin(Position pos)
         {
             if (boa.piece(pos) == null)
-            {
-                throw new BoardException("Não existe peça na posição escolhida");
+            {                
+                throw new BoardException("Não existe peça na posição escolhida");                
             }
 
             if(currentPlayer != boa.piece(pos).Color)
             {
-                throw new BoardException("Peça de escolhida não é sua");
+                throw new BoardException("A peça escolhida não é sua");
             }
 
             if (!boa.piece(pos).existsMovement())
             {
                 throw new BoardException("Não existe jogadas para a esta peça");
-            }
+            }            
         }
 
         public void TestPosDestiny(Position origin, Position destiny)
