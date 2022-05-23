@@ -5,13 +5,13 @@ using Chess;
 
 namespace Xadrez
 {
+    
     class Screen
-    { 
+    {
         public static void printMatch(ChessMatch match)
         {
             printScreen(match.boa);
             Console.WriteLine();
-            printPiecesCatch(match);
             Console.WriteLine();
             Console.WriteLine("Turno: " + match.turn);
             if (!match.matchFinished)
@@ -62,6 +62,9 @@ namespace Xadrez
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
+            Console.WriteLine();
+            Console.WriteLine("Leegenda: ");
+            Console.WriteLine("T = Torre, H = Cavalo, B = Bispo, Q = Rainha, K = Rei e P = Pinhão");
 
         }
 
@@ -88,7 +91,6 @@ namespace Xadrez
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H");
             Console.BackgroundColor = bOriginal;
 
         }
@@ -100,7 +102,22 @@ namespace Xadrez
             int linha = int.Parse(s[1] + "");
             if(linha < 8)
             {
-                if(coluna < 8)
+                int n = 0;
+                string l = coluna.ToString().ToUpper();                
+
+                switch (l)
+                {                    
+                    case "A": n = 0; break;
+                    case "B": n = 1; break;
+                    case "C": n = 2; break;
+                    case "D": n = 3; break;
+                    case "E": n = 4; break;
+                    case "F": n = 5; break;
+                    case "G": n = 6; break;
+                    case "H": n = 7; break;
+                }             
+
+                if (n < 8)
                 {
                     return new PositionChess(linha, coluna);
                 }
