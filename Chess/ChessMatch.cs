@@ -217,7 +217,7 @@ namespace Chess
             if (!boa.piece(pos).existsMovement())
             {
                 throw new BoardException("Não existe jogadas para a esta peça");
-            }            
+            }
         }
 
         public void TestPosDestiny(Position origin, Position destiny)
@@ -269,7 +269,6 @@ namespace Chess
             putNewPiece(7, 'f', new Pawn(boa, Color.Preto));
             putNewPiece(7, 'g', new Pawn(boa, Color.Preto));
             putNewPiece(7, 'h', new Pawn(boa, Color.Preto));
-
         }
     }
 }
