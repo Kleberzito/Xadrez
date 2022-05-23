@@ -63,7 +63,7 @@ namespace Xadrez
             }
             Console.WriteLine("  A B C D E F G H");
             Console.WriteLine();
-            Console.WriteLine("Leegenda: ");
+            Console.WriteLine("Legenda: ");
             Console.WriteLine("T = Torre, H = Cavalo, B = Bispo, Q = Rainha, K = Rei e P = Pinhão");
 
         }
@@ -92,7 +92,6 @@ namespace Xadrez
                 Console.WriteLine();
             }
             Console.BackgroundColor = bOriginal;
-
         }
 
         public static PositionChess readPosition()
@@ -103,23 +102,23 @@ namespace Xadrez
             if(linha < 8)
             {
                 int n = 0;
-                string l = coluna.ToString().ToUpper();                
+                string l = coluna.ToString().ToLowerInvariant();
 
                 switch (l)
                 {                    
-                    case "A": n = 0; break;
-                    case "B": n = 1; break;
-                    case "C": n = 2; break;
-                    case "D": n = 3; break;
-                    case "E": n = 4; break;
-                    case "F": n = 5; break;
-                    case "G": n = 6; break;
-                    case "H": n = 7; break;
+                    case "a": n = 0; break;
+                    case "b": n = 1; break;
+                    case "c": n = 2; break;
+                    case "d": n = 3; break;
+                    case "e": n = 4; break;
+                    case "f": n = 5; break;
+                    case "g": n = 6; break;
+                    case "h": n = 7; break;
                 }             
 
                 if (n < 8)
-                {
-                    return new PositionChess(linha, coluna);
+                {                    
+                    return new PositionChess(linha, char.ToLower(coluna));
                 }
                 else
                 {

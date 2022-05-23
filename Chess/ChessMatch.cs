@@ -204,6 +204,7 @@ namespace Chess
 
         public void TestPosOrigin(Position pos)
         {
+            Console.WriteLine(pos);
             if (boa.piece(pos) == null)
             {                
                 throw new BoardException("Não existe peça na posição escolhida");                
@@ -269,9 +270,6 @@ namespace Chess
             putNewPiece(7, 'f', new Pawn(boa, Color.Preto));
             putNewPiece(7, 'g', new Pawn(boa, Color.Preto));
             putNewPiece(7, 'h', new Pawn(boa, Color.Preto));
-
-
-
 
         }
     }
