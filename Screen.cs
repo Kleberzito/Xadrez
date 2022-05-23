@@ -12,6 +12,7 @@ namespace Xadrez
         {
             printScreen(match.boa);
             Console.WriteLine();
+            printPiecesCatch(match);
             Console.WriteLine();
             Console.WriteLine("Turno: " + match.turn);
             if (!match.matchFinished)
@@ -45,7 +46,7 @@ namespace Xadrez
             Console.Write("[");
             foreach (Piece p in pieceSet)
             {                
-                Console.WriteLine(p + " ");
+                Console.Write(p + " ");
             }
             Console.Write("]");            
         }
