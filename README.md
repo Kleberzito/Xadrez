@@ -47,6 +47,6 @@ numeração da linha.</p>
 
 <h4>Técnologias</h4>
 
-Neste projeto foi usado as técnologias
+Neste projeto foi usado as técnologias:
 - [C#](https://docs.microsoft.com/pt-br/dotnet/csharp/)
 - [.NET](https://docs.microsoft.com/pt-br/dotnet/)
